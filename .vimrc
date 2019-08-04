@@ -39,6 +39,18 @@ set backspace=indent,eol,start
 let g:ale_sign_error = '🚫'
 let g:ale_sign_warning = '⚠️'
 
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['prettier', 'eslint'],
+\   'javascript.jsx': ['prettier', 'eslint'],
+\   'typescript': ['prettier', 'eslint'],
+\   'elixir': ['mix_format'],
+\   'ruby': ['rubocop']
+\}
+
+let g:ale_lint_delay = 5000
+let g:ale_fix_on_save = 1 " fix files automatically on save
+
 " searching
 set hlsearch " highlight search matches
 set incsearch  " highlight matches as you type
@@ -81,6 +93,9 @@ nnoremap <c-l> <c-w>l
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
+
+" replace normal mode ctrl+p with fzf :Files
+nnoremap <C-p> :Files<CR>
 
 " Insert mode completion
 imap <c-x><c-k> <plug>(fzf-complete-word)
