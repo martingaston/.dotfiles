@@ -11,6 +11,7 @@ call vundle#begin()
 
 Plugin 'dracula/vim'
 Plugin 'itchyny/lightline.vim'
+Plugin 'Yggdroot/indentLine'
 
 call vundle#end()
 
