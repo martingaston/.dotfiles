@@ -12,6 +12,10 @@ call vundle#begin()
 Plugin 'dracula/vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'Yggdroot/indentLine'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'dense-analysis/ale'
 
 call vundle#end()
 
@@ -31,6 +35,10 @@ set tabstop=2 shiftwidth=2 " number of spaces a tab counts for, number of spaces
 set expandtab " insert spaces when pressing tab in insert mode
 set backspace=indent,eol,start
 
+" ale
+let g:ale_sign_error = '🚫'
+let g:ale_sign_warning = '⚠️'
+
 " searching
 set hlsearch " highlight search matches
 set incsearch  " highlight matches as you type
@@ -45,6 +53,12 @@ set noshowmode  " do not show the current mode in the bottom line (not needed wi
 " let sets internal variables, see :h :internal-variables
 let g:lightline = { 'colorscheme': 'dracula' }
 
+" split to the right and below
+set splitright
+set splitbelow
+
+" bindings
+
 " don't use arrowkeys
 noremap <Up> <NOP>
 noremap <Down> <NOP>
@@ -56,3 +70,23 @@ inoremap <Up>    <NOP>
 inoremap <Down>  <NOP>
 inoremap <Left>  <NOP>
 inoremap <Right> <NOP>
+
+" easier navigation between split windows
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+
+" Advanced customization using autoload functions
+inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
