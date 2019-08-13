@@ -23,14 +23,14 @@ call vundle#end()
 syntax enable " enable syntax highlighting
 set number " enable line numbers
 set cursorline  " show the current line the cursor is on, makes redrawing slower
-color dracula 
+color dracula
 
 if (has('termguicolors'))
   set termguicolors " support 24-bit colour
 endif
 
 " whitespace
-set nowrap 
+set nowrap
 set tabstop=2 shiftwidth=2 " number of spaces a tab counts for, number of spaces to autoindent
 set expandtab " insert spaces when pressing tab in insert mode
 set backspace=indent,eol,start
@@ -57,6 +57,11 @@ set incsearch  " highlight matches as you type
 set ignorecase " ignore case when searching...
 set smartcase " ...unless the search has uppercase characters
 
+" netrw
+let g:netrw_banner = 0 " suppress the banner
+let g:netrw_liststyle = 3 " tree listing
+let g:netrw_winsize = 25 " window width (percent of buffer window)
+
 " status
 set laststatus=2 " always show the status line
 set noshowmode  " do not show the current mode in the bottom line (not needed with lightline)
@@ -68,6 +73,9 @@ let g:lightline = { 'colorscheme': 'dracula' }
 " split to the right and below
 set splitright
 set splitbelow
+
+" use ag by default with FZF (so will respect .gitignore)
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 " bindings
 
@@ -88,11 +96,6 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
-
-" Mapping selecting mappings
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
 
 " replace normal mode ctrl+p with fzf :Files
 nnoremap <C-p> :Files<CR>
