@@ -69,6 +69,7 @@ plugins=(
   colored-man-pages
   nvm
   rbenv
+  pyenv
   asdf
   fzf
 )
